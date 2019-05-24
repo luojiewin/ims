@@ -1,0 +1,25 @@
+package com.roger.ims.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.roger.ims.dto.Menu;
+import com.roger.ims.mapper.SysRightMapper;
+import com.roger.ims.service.LoginService;
+import com.roger.ims.utils.GetMenuTree;
+
+@Service
+public class LoginServiceImpl implements LoginService{
+	@Autowired
+	private SysRightMapper srm;
+	
+	@Override
+	public List<Menu> getMenuTree() {
+		List<Menu> menuList = srm.getRightByUserId("131212");
+		GetMenuTree menuTree = new GetMenuTree();
+		return menuTree.getMenuTree(menuList);			
+	}
+
+}
