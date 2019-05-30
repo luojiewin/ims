@@ -27,4 +27,6 @@ public interface SysRightMapper {
 	 * @return
 	 */
     List<Menu> getRightByUserId(String userId);
+    
+    
 }

@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -33,12 +33,8 @@ public class RoleController {
 	 */
 	@RequestMapping(value = "selectRole", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<Object, Object> selectAllRole(HttpServletRequest request) {
-		// 获取参数
-		String pageNum = request.getParameter("pageNum");
-		String pageSize = request.getParameter("pageSize");
-		String roleName = request.getParameter("roleName");
-		String description = request.getParameter("description");
+	public Map<Object, Object> selectAllRole(@RequestParam String pageNum, String pageSize, String roleName,
+			String description) {
 		// 创建分页
 		PageHelper.startPage(Integer.parseInt(pageNum), Integer.parseInt(pageSize));
 		Role role = new Role();
@@ -58,45 +54,47 @@ public class RoleController {
 
 		return resultMap;
 	}
+
 	/**
 	 * 添加权限
+	 * 
 	 * @param role
 	 * @return
 	 */
 	@RequestMapping(value = "addRole", method = RequestMethod.POST)
 	@ResponseBody
-	public String addRole(SysRole role) {
+	public String addRole(@RequestBody SysRole role) {
 		role.setCreationUserId(1L);
 		role.setLastUpdateUserId(1L);
 		int count = rs.insertRole(role);
-		return count+"  success!!";
+		return count + "  success!!";
 	}
-	
+
 	/**
 	 * 更新角色信息
+	 * 
 	 * @param role
 	 * @return
 	 */
 	@RequestMapping(value = "updateRole", method = RequestMethod.POST)
 	@ResponseBody
-	public String updateRole(SysRole role) {
+	public String updateRole(@RequestBody SysRole role) {
 		role.setLastUpdateUserId(2L);
 		int count = rs.updateRole(role);
-		return count+"  success!!";
+		return count + "  success!!";
 	}
-	
+
 	/**
 	 * 批量删除角色信息
+	 * 
 	 * @param role
 	 * @return
 	 */
 	@RequestMapping(value = "deleteRole", method = RequestMethod.POST)
 	@ResponseBody
 	public String deleteRole(@RequestBody List<SysRole> role) {
-		System.out.println("111");
 		int count = rs.deleteRole(role);
-		return count+"  success!!";
+		return count + "  success!!";
 	}
-	
-	
+
 }

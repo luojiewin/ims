@@ -85,11 +85,9 @@
 		LEFT JOIN sys_user_role_relation surr ON su.user_id = surr.user_id
 		LEFT JOIN sys_role_right_relation srrr ON surr.role_id = srrr.role_id
 		LEFT JOIN sys_role sr ON sr.role_id = surr.role_id
-		LEFT JOIN sys_right
-		srt ON srt.right_id
+		LEFT JOIN sys_right srt ON srt.right_id = srrr.right_id
 		WHERE
 		su.login_name = '131212'
-		AND srt.right_level =
-		'0'
+		AND srt.right_level = '0'
 	</select>
 </mapper>

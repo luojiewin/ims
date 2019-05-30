@@ -54,8 +54,8 @@
 		from sys_user
 	</select>
 
-	<select id="selectByLoginName" resultMap="BaseResultMap"
-		parameterType="java.lang.String">
+	<select id="getUserInfoByUser" resultMap="BaseResultMap"
+		parameterType="com.roger.ims.entity.SysUser">
 		select user_id, login_name, password, username, telphone, email,
 		last_login_time,
 		creation_time, creation_user_id, last_update_time, last_update_user_id

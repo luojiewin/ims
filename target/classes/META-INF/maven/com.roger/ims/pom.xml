@@ -12,6 +12,7 @@
 	<groupId>com.roger</groupId>
 	<artifactId>ims</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>	
 	<name>ims</name>
 	<description>ims project for Spring Boot</description>
 
@@ -83,6 +84,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+                    <mainClass>com.roger.ims.ImsApplication</mainClass>
+                </configuration>
 			</plugin>
 		</plugins>
 	</build>
