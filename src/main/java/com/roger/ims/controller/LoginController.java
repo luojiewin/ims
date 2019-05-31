@@ -46,11 +46,11 @@ public class LoginController {
 		System.out.println(user.getLoginName());
 		SysUser retUser = ls.getUserInfoByUser(user);
 		if(retUser == null || "".equals(retUser)){
-			map.put("status", 200);
+			map.put("status", 201);
 			return map;
 		}else {
 			map.put("userInfo", retUser);
-			map.put("status", 201);
+			map.put("status", 200);
 			createSession(retUser,request);
 			return map;
 		}
