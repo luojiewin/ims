@@ -35,7 +35,7 @@ public class LoginController {
 	}
 	
 	/**
-	 * 
+	 * 用户登录
 	 * @param user
 	 * @return
 	 */
