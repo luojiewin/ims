@@ -1,5 +1,6 @@
 package com.roger.ims;
 
+
 import java.util.List;
 
 import org.junit.Ignore;
@@ -8,10 +9,13 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.roger.ims.dto.Menu;
+import com.roger.ims.entity.SysRole;
 import com.roger.ims.entity.SysUser;
 import com.roger.ims.mapper.SysRightMapper;
+import com.roger.ims.mapper.SysRoleMapper;
 import com.roger.ims.mapper.SysUserMapper;
 import com.roger.ims.utils.GetMenuTree;
 
@@ -20,6 +24,9 @@ import com.roger.ims.utils.GetMenuTree;
 public class ImsApplicationTests {
 	@Autowired
 	private SysRightMapper srm;
+	
+	@Autowired
+	private SysRoleMapper srm1;
 	
 	@Autowired
 	private SysUserMapper sum;
@@ -32,13 +39,26 @@ public class ImsApplicationTests {
 		System.out.println(ret);
 
 	}
-	@Test
+	@Ignore
 	public void getUserInfoByUser() {
 		SysUser user = new SysUser();
 		user.setLoginName("131212");
 		user.setPassword("1");
 		SysUser retUser = sum.getUserInfoByUser(user);
 		System.out.println(retUser.getUsername());
+	}
+	
+	@Test
+	@Transactional
+	public void tranTest() throws Exception{
+		SysRole role = new SysRole();
+		role.setRoleId(47L);
+		role.setRoleName("first111");
+		try {
+			srm1.updateRole(role);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
