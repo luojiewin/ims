@@ -17,10 +17,17 @@ import com.roger.ims.dto.Role;
 import com.roger.ims.entity.SysRole;
 import com.roger.ims.service.RoleService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+
 /**
  * 角色界面
  */
 @Controller
+@Api(tags = "角色操作")
+@RequestMapping("admin")
 public class RoleController {
 	@Autowired
 	private RoleService rs;
@@ -31,9 +38,16 @@ public class RoleController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "selectRole", method = RequestMethod.POST)
+	@RequestMapping(value = "roles", method = RequestMethod.GET)
+	@ApiOperation(value= "获取角色列表")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "pageNum",required = true,value = "页数"),
+		@ApiImplicitParam(name = "pageSize",required = true,value = "每页显示数量"),
+		@ApiImplicitParam(name = "roleName",value = "角色名称"),
+		@ApiImplicitParam(name = "description",value = "角色描述")
+	})
 	@ResponseBody
-	public Map<Object, Object> selectAllRole(@RequestParam String pageNum, String pageSize, String roleName,
+	public Map<Object, Object> getRoles(@RequestParam String pageNum, String pageSize, String roleName,
 			String description) {
 		// 创建分页
 		PageHelper.startPage(Integer.parseInt(pageNum), Integer.parseInt(pageSize));
@@ -61,9 +75,9 @@ public class RoleController {
 	 * @param role
 	 * @return
 	 */
-	@RequestMapping(value = "addRole", method = RequestMethod.POST)
+	@RequestMapping(value = "roles", method = RequestMethod.POST)
 	@ResponseBody
-	public String addRole(@RequestBody SysRole role) {
+	public String postRoles(@RequestBody SysRole role) {
 		role.setCreationUserId(1L);
 		role.setLastUpdateUserId(1L);
 		int count = rs.insertRole(role);
@@ -76,9 +90,9 @@ public class RoleController {
 	 * @param role
 	 * @return
 	 */
-	@RequestMapping(value = "updateRole", method = RequestMethod.POST)
+	@RequestMapping(value = "roles", method = RequestMethod.PUT)
 	@ResponseBody
-	public String updateRole(@RequestBody SysRole role) {
+	public String putRole(@RequestBody SysRole role) {
 		role.setLastUpdateUserId(2L);
 		int count = rs.updateRole(role);
 		return count + "  success!!";
@@ -90,9 +104,9 @@ public class RoleController {
 	 * @param role
 	 * @return
 	 */
-	@RequestMapping(value = "deleteRole", method = RequestMethod.POST)
+	@RequestMapping(value = "roles", method = RequestMethod.DELETE)
 	@ResponseBody
-	public String deleteRole(@RequestBody List<SysRole> role) {
+	public String deleteRoles(@RequestBody List<SysRole> role) {
 		int count = rs.deleteRole(role);
 		return count + "  success!!";
 	}

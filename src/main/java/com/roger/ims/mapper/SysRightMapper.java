@@ -2,6 +2,8 @@ package com.roger.ims.mapper;
 
 import com.roger.ims.dto.Menu;
 import com.roger.ims.entity.SysRight;
+import com.roger.ims.entity.SysRole;
+
 import java.util.List;
 
 public interface SysRightMapper {
@@ -28,5 +30,10 @@ public interface SysRightMapper {
 	 */
     List<Menu> getRightByUserId(String userId);
     
-    
+    /**
+     * 根据角色信息获取权限信息
+     * @param rolelist
+     * @return
+     */
+    List<SysRight> getRightsByRoles(List<SysRole> rolelist);
 }

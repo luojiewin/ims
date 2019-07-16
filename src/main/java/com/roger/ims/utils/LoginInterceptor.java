@@ -4,8 +4,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+
+import ch.qos.logback.classic.Logger;
 
 /**
  * 用户登录拦截
@@ -15,16 +18,15 @@ import org.springframework.web.servlet.ModelAndView;
  */
 
 public class LoginInterceptor implements HandlerInterceptor {
-
+	
+	private static Logger LOGGER = (Logger) LoggerFactory.getLogger(LoginInterceptor.class);
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 
 		HttpSession session = request.getSession(false);// 防止创建Session
-		System.out.println(request.getRequestURI());
-		if (request.getRequestURI().equals("/userLogin")) {
-			return true;
-		} else if (session != null) {
+		LOGGER.info(request.getRequestURI());
+		if (session != null||request.getRequestURI().equals("/user/login")) {
 			return true;
 		} else {
 			response.sendError(401);

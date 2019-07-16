@@ -30,14 +30,11 @@
 	<!-- Menu结果集 -->
 	<resultMap id="menuResultMap" type="com.roger.ims.dto.Menu">
 		<result column="right_id" jdbcType="BIGINT" property="rightId" />
-		<result column="right_name" jdbcType="VARCHAR"
-			property="title" />
+		<result column="right_name" jdbcType="VARCHAR" property="title" />
 		<result column="parent_right" jdbcType="BIGINT"
 			property="parentRight" />
-		<result column="menu_index" jdbcType="VARCHAR"
-			property="index" />
-		<result column="icon" jdbcType="VARCHAR"
-			property="icon" />
+		<result column="menu_index" jdbcType="VARCHAR" property="index" />
+		<result column="icon" jdbcType="VARCHAR" property="icon" />
 	</resultMap>
 
 	<insert id="insert"
@@ -85,9 +82,37 @@
 		LEFT JOIN sys_user_role_relation surr ON su.user_id = surr.user_id
 		LEFT JOIN sys_role_right_relation srrr ON surr.role_id = srrr.role_id
 		LEFT JOIN sys_role sr ON sr.role_id = surr.role_id
-		LEFT JOIN sys_right srt ON srt.right_id = srrr.right_id
+		LEFT JOIN sys_right
+		srt ON srt.right_id = srrr.right_id
 		WHERE
 		su.login_name = '131212'
-		AND srt.right_level = '0'
+		AND
+		srt.right_level = '0'
 	</select>
+	
+	<!-- 根据角色获取用户权限 -->
+	<select id="getRightsByRoles" resultMap="BaseResultMap">
+		SELECT
+		srt.right_id,
+		srt.right_name,
+		srt.parent_right,
+		srt.menu_index,
+		srt.icon
+		FROM
+		sys_user su
+		LEFT JOIN sys_user_role_relation surr ON
+		su.user_id = surr.user_id
+		LEFT JOIN sys_role_right_relation srrr ON
+		surr.role_id = srrr.role_id
+		LEFT JOIN sys_role sr ON sr.role_id =
+		surr.role_id
+		LEFT JOIN sys_right srt ON srt.right_id = srrr.right_id
+		WHERE sr.role_id in
+		<foreach collection="list" item="item" index="index" open="("
+			close=")" separator=",">
+			#{item.roleId}
+		</foreach>
+	</select>
+
+
 </mapper>
