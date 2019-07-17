@@ -33,7 +33,7 @@ public class ImsApplicationTests {
 
 	@Ignore
 	public void contextLoads() {
-		List<Menu> menuList = srm.getRightByUserId("131212");
+		List<Menu> menuList = srm.selectRightByUserId("131212");
 		GetMenuTree menuTree = new GetMenuTree();
 		List<Menu> ret = menuTree.getMenuTree(menuList);
 		System.out.println(ret);
@@ -44,7 +44,7 @@ public class ImsApplicationTests {
 		SysUser user = new SysUser();
 		user.setLoginName("131212");
 		user.setPassword("1");
-		SysUser retUser = sum.getUserInfoByUser(user);
+		SysUser retUser = sum.selectUserInfoByUser(user);
 		System.out.println(retUser.getUsername());
 	}
 	

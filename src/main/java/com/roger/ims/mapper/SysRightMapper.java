@@ -24,19 +24,19 @@ public interface SysRightMapper {
     List<SysRight> selectAll();
     
     /**  
-     * @Title: getRightByUserId
+     * @Title: selectRightByUserId
      * @Description: 根据用户ID获取菜单权限
      * @param userId
      * @return  List<Menu>
      */  
-    List<Menu> getRightByUserId(String userId);
+    List<Menu> selectRightByUserId(String userId);
     
 
     /**  
-     * @Title: getRightsByRoles
+     * @Title: selectRightsByRoles
      * @Description: 根据角色信息获取权限信息
      * @param rolelist
      * @return  List<SysRight>
      */  
-    List<SysRight> getRightsByRoles(List<SysRole> rolelist);
+    List<SysRight> selectRightsByRoles(List<SysRole> rolelist);
 }

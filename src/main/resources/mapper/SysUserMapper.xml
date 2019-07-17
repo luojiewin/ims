@@ -54,7 +54,7 @@
 		from sys_user
 	</select>
 
-	<select id="getUserInfoByUser" resultMap="BaseResultMap"
+	<select id="selectUserInfoByUser" resultMap="BaseResultMap"
 		parameterType="com.roger.ims.entity.SysUser">
 		select user_id, login_name, password, username, telphone, email,
 		last_login_time,

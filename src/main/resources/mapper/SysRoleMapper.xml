@@ -100,7 +100,7 @@
 	</delete>
 
 	<!-- 登录用户获取角色 -->
-	<select id="getRolesByUser" resultMap="BaseResultMap"
+	<select id="selectRolesByUser" resultMap="BaseResultMap"
 		parameterType="com.roger.ims.entity.SysUser">
 		SELECT
 		sr.role_id,

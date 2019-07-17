@@ -67,9 +67,9 @@ public class LoginController {
 	@ResponseBody
 	public Map<Object, Object> userLogin(@RequestBody SysUser user, HttpServletRequest request) {
 		Map<Object, Object> map = new HashMap<Object, Object>();
-		SysUser retUser = ls.getUserInfoByUser(user);
-		List<SysRole> retRole = ls.getRoleInfoByUser(retUser);
-		List<SysRight> retRight = ls.getRightInfoByRole(retRole);
+		SysUser retUser = ls.selectUserInfoByUser(user);
+		List<SysRole> retRole = ls.selectRoleInfoByUser(retUser);
+		List<SysRight> retRight = ls.selectRightInfoByRole(retRole);
 		if (retUser == null || "".equals(retUser)) {
 			map.put("status", 201);
 			return map;

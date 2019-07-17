@@ -40,47 +40,47 @@ public class LoginServiceImpl implements LoginService{
 	 */
 	@Override
 	public List<Menu> getMenuTree(SysUser user) {
-		List<Menu> menuList = srm.getRightByUserId(user.getLoginName());
+		List<Menu> menuList = srm.selectRightByUserId(user.getLoginName());
 		GetMenuTree menuTree = new GetMenuTree();
 		return menuTree.getMenuTree(menuList);			
 	}
 	
 	
 	/**  
-	 * @Title: getUserInfoByUser 
+	 * @Title: selectUserInfoByUser 
 	 * @Description: 根据用户账户获取用户信息
 	 * @param user
 	 * @return  
 	 * @see com.roger.ims.service.LoginService#getUserInfoByUser(com.roger.ims.entity.SysUser)  
 	 */
 	@Override
-	public SysUser getUserInfoByUser(SysUser user) {
-		return  sum.getUserInfoByUser(user);
+	public SysUser selectUserInfoByUser(SysUser user) {
+		return  sum.selectUserInfoByUser(user);
 	}
 
 	/**  
-	 * @Title: getRoleInfoByUser 
+	 * @Title: selectRoleInfoByUser 
 	 * @Description: 根据用户信息获取角色信息
 	 * @param user
 	 * @return  
 	 * @see com.roger.ims.service.LoginService#getRoleInfoByUser(com.roger.ims.entity.SysUser)  
 	 */
 	@Override
-	public List<SysRole> getRoleInfoByUser(SysUser user) {
-		return sysRoleMapper.getRolesByUser(user);
+	public List<SysRole> selectRoleInfoByUser(SysUser user) {
+		return sysRoleMapper.selectRolesByUser(user);
 	}
 
 	
 	/**  
-	 * @Title: getRightInfoByRole 
+	 * @Title: selectRightInfoByRole 
 	 * @Description: 根据角色获取权限信息
 	 * @param roleList
 	 * @return  
 	 * @see com.roger.ims.service.LoginService#getRightInfoByRole(java.util.List)  
 	 */
 	@Override
-	public List<SysRight> getRightInfoByRole(List<SysRole> roleList) {
-		return srm.getRightsByRoles(roleList);
+	public List<SysRight> selectRightInfoByRole(List<SysRole> roleList) {
+		return srm.selectRightsByRoles(roleList);
 	}
 
 }

@@ -25,27 +25,27 @@ public interface LoginService {
 	public List<Menu> getMenuTree(SysUser user);
 	
 	/**  
-	 * @Title: getUserInfoByUser
+	 * @Title: selectUserInfoByUser
 	 * @Description: 获取用户信息
 	 * @param user
 	 * @return  
 	 */  
-	public SysUser getUserInfoByUser(SysUser user);
+	public SysUser selectUserInfoByUser(SysUser user);
 	
 
 	/**  
-	 * @Title: getRoleInfoByUser
+	 * @Title: selectRoleInfoByUser
 	 * @Description: 获取角色信息
 	 * @param user
 	 * @return  
 	 */  
-	public List<SysRole> getRoleInfoByUser(SysUser user);
+	public List<SysRole> selectRoleInfoByUser(SysUser user);
 
 	/**  
-	 * @Title: getRightInfoByRole
+	 * @Title: selectRightInfoByRole
 	 * @Description: 根据角色获取权限信息
 	 * @param roleList
 	 * @return  
 	 */  
-	public List<SysRight> getRightInfoByRole(List<SysRole> roleList);
+	public List<SysRight> selectRightInfoByRole(List<SysRole> roleList);
 }

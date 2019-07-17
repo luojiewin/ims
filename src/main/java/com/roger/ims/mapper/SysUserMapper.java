@@ -22,12 +22,12 @@ public interface SysUserMapper {
 
 
 	/**  
-	 * @Title: getUserInfoByUser
+	 * @Title: selectUserInfoByUser
 	 * @Description: 根据登录账户查询
 	 * @param user
 	 * @return  SysUser
 	 */  
-	SysUser getUserInfoByUser(SysUser user);
+	SysUser selectUserInfoByUser(SysUser user);
 
 
 }

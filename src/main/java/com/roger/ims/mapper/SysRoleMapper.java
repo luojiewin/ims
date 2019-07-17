@@ -50,10 +50,10 @@ public interface SysRoleMapper {
 	int deleteRole(List<SysRole> role);
 	
 	/**  
-	 * @Title: getRolesByUser
+	 * @Title: selectRolesByUser
 	 * @Description: 根据用户获取权限
 	 * @param user
 	 * @return  
 	 */  
-	List<SysRole> getRolesByUser(SysUser user);
+	List<SysRole> selectRolesByUser(SysUser user);
 }
