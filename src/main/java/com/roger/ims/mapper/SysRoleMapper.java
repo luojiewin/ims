@@ -23,25 +23,37 @@ public interface SysRoleMapper {
 	 */
 	List<SysRole> selectAll();
 
-	/**
-	 * 查询所有角色信息
-	 */
+	/**  
+	 * @Title: selectRole
+	 * @Description: 查询角色
+	 * @param role
+	 * @return  List<Role>
+	 */  
 	List<Role> selectRole(Role role);
 
-	/**
-	 * 更新角色信息
-	 */
+
+	/**  
+	 * @Title: updateRole
+	 * @Description: 更新角色信息
+	 * @param role
+	 * @return  
+	 */  
 	int updateRole(SysRole role);
 
-	/**
-	 * 批量删除角色信息
-	 */
+
+	/**  
+	 * @Title: deleteRole
+	 * @Description: 批量删除角色信息
+	 * @param role
+	 * @return  
+	 */  
 	int deleteRole(List<SysRole> role);
 	
-	/**
-	 * 根据用户获取角色
+	/**  
+	 * @Title: getRolesByUser
+	 * @Description: 根据用户获取权限
 	 * @param user
-	 * @return
-	 */
+	 * @return  
+	 */  
 	List<SysRole> getRolesByUser(SysUser user);
 }

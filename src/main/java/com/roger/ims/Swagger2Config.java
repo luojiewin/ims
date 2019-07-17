@@ -10,6 +10,12 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
 
+/**  
+* @Title: Swagger2Config  
+* @Description: swwager配置文件
+* @author roger  
+* @date 2019年7月17日  
+*/  
 @Configuration
 public class Swagger2Config {
 	

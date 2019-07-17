@@ -23,8 +23,15 @@ import com.roger.ims.service.LoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+/**
+ * @Title: LoginController
+ * @Description: 登陆界面controller类
+ * @author roger
+ * @date 2019年7月17日
+ */
+
 @Controller
-@RequestMapping(value="user")
+@RequestMapping(value = "user")
 @Api(tags = "用户登录")
 public class LoginController {
 
@@ -32,8 +39,9 @@ public class LoginController {
 	private LoginService ls;
 
 	/**
-	 * 获取权限列表
-	 * 
+	 * @Title: getMenu
+	 * @Description: 获取用户菜单信息
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(value = "menus", method = RequestMethod.GET)
@@ -44,18 +52,20 @@ public class LoginController {
 		SysUser user = new SysUser();
 		user = (SysUser) session.getAttribute("user");
 		return ls.getMenuTree(user);
+
 	}
 
 	/**
-	 * 用户登录
-	 * @ApiOperation 用户登录信息验证
+	 * @Title: userLogin
+	 * @Description: 用戶登陸
 	 * @param user
-	 * @return
+	 * @param request
+	 * @return map
 	 */
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	@ApiOperation(value = "用户登录信息验证")
 	@ResponseBody
-	public Map<Object, Object> UserLogin(@RequestBody SysUser user, HttpServletRequest request) {
+	public Map<Object, Object> userLogin(@RequestBody SysUser user, HttpServletRequest request) {
 		Map<Object, Object> map = new HashMap<Object, Object>();
 		SysUser retUser = ls.getUserInfoByUser(user);
 		List<SysRole> retRole = ls.getRoleInfoByUser(retUser);
@@ -72,7 +82,12 @@ public class LoginController {
 	}
 
 	/**
-	 * 创建用户session
+	 * @Title: createSession
+	 * @Description: 创建用户sesion
+	 * @param user
+	 * @param role
+	 * @param right
+	 * @param request
 	 */
 	public void createSession(SysUser user, List<SysRole> role, List<SysRight> right, HttpServletRequest request) {
 		// 使用request对象的getSession()获取session，如果session不存在则创建一个

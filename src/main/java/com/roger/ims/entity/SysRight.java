@@ -2,6 +2,12 @@ package com.roger.ims.entity;
 
 import java.util.Date;
 
+/**  
+* @Title: SysRight  
+* @Description: 权限表 sys_right
+* @author roger  
+* @date 2019年7月17日  
+*/  
 public class SysRight {
     /**
      *

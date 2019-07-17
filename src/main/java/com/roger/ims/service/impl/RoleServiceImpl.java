@@ -12,6 +12,12 @@ import com.roger.ims.mapper.SysRoleMapper;
 import com.roger.ims.service.RoleService;
 import ch.qos.logback.classic.Logger;
 
+/**  
+* @Title: RoleServiceImpl  
+* @Description: 角色管理service实现类
+* @author roger  
+* @date 2019年7月17日  
+*/  
 @Service
 public class RoleServiceImpl implements RoleService{
 	
@@ -20,11 +26,25 @@ public class RoleServiceImpl implements RoleService{
 	@Autowired
 	private SysRoleMapper srm;
 	
+	/**  
+	 * @Title: selectRole 
+	 * @Description: 查询角色
+	 * @param role
+	 * @return  
+	 * @see com.roger.ims.service.RoleService#selectRole(com.roger.ims.dto.Role)  
+	 */
 	@Override
 	public List<Role> selectRole(Role role) {
 		return srm.selectRole(role);
 	}
 
+	/** 
+	 * @Title: insertRole 
+	 * @Description: 添加角色
+	 * @param role
+	 * @return  
+	 * @see com.roger.ims.service.RoleService#insertRole(com.roger.ims.entity.SysRole)  
+	 */
 	@Override
 	@Transactional
 	public int insertRole(SysRole role) {
@@ -37,7 +57,14 @@ public class RoleServiceImpl implements RoleService{
 		}
 		return result;
 	}
-
+	
+	/**  
+	 * @Title: updateRole 
+	 * @Description: 更新角色
+	 * @param role
+	 * @return  
+	 * @see com.roger.ims.service.RoleService#updateRole(com.roger.ims.entity.SysRole)  
+	 */
 	@Override
 	@Transactional
 	public int updateRole(SysRole role) {	
@@ -49,8 +76,17 @@ public class RoleServiceImpl implements RoleService{
 		}
 		return result;
 	}
-
+    
+	
+	/**  
+	 * @Title: deleteRole 
+	 * @Description: 删除角色
+	 * @param role
+	 * @return  
+	 * @see com.roger.ims.service.RoleService#deleteRole(java.util.List)  
+	 */
 	@Override
+	@Transactional
 	public int deleteRole(List<SysRole> role) {	
 		int result = 0;
 		try {

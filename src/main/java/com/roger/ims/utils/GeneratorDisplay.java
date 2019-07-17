@@ -8,6 +8,12 @@ import org.mybatis.generator.config.Configuration;
 import org.mybatis.generator.config.xml.ConfigurationParser;
 import org.mybatis.generator.internal.DefaultShellCallback;
 
+/**  
+* @Title: GeneratorDisplay  
+* @Description: 根据表生产entity,mapper,xml文件
+* @author roger  
+* @date 2019年7月17日  
+*/  
 public class GeneratorDisplay {
 
 	public void generator() throws Exception{

@@ -7,33 +7,45 @@ import com.roger.ims.entity.SysRight;
 import com.roger.ims.entity.SysRole;
 import com.roger.ims.entity.SysUser;
 
+
+/**  
+* @Title: LoginService  
+* @Description: 登录界面service
+* @author roger  
+* @date 2019年7月17日  
+*/  
 public interface LoginService {
 	
-	/**
-	 * 获取导航菜单树
-	 * @return
-	 */
+	/**  
+	 * @Title: getMenuTree
+	 * @Description: 获取导航菜单树
+	 * @param user
+	 * @return  
+	 */  
 	public List<Menu> getMenuTree(SysUser user);
 	
-	/**
-	 * 获取用户信息
+	/**  
+	 * @Title: getUserInfoByUser
+	 * @Description: 获取用户信息
 	 * @param user
-	 * @return
-	 */
+	 * @return  
+	 */  
 	public SysUser getUserInfoByUser(SysUser user);
 	
-	/**
-	 * 获取角色信息
+
+	/**  
+	 * @Title: getRoleInfoByUser
+	 * @Description: 获取角色信息
 	 * @param user
-	 * @return
-	 */
-	
+	 * @return  
+	 */  
 	public List<SysRole> getRoleInfoByUser(SysUser user);
 
-	/**
-	 * 根据角色获取权限信息
+	/**  
+	 * @Title: getRightInfoByRole
+	 * @Description: 根据角色获取权限信息
 	 * @param roleList
-	 * @return
-	 */
+	 * @return  
+	 */  
 	public List<SysRight> getRightInfoByRole(List<SysRole> roleList);
 }

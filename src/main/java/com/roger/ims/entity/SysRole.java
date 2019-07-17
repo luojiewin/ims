@@ -4,6 +4,12 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+/**  
+* @Title: SysRole  
+* @Description: 角色表 sys_role
+* @author roger  
+* @date 2019年7月17日  
+*/  
 public class SysRole {
     /**
      *

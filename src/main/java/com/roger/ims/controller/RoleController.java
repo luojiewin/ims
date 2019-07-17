@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,22 +23,30 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
-/**
- * 角色界面
- */
+/**  
+* @Title: RoleController  
+* @Description: 角色管理界面
+* @author roger  
+* @date 2019年7月17日  
+*/  
 @Controller
 @Api(tags = "角色操作")
 @RequestMapping("admin")
 public class RoleController {
+	
 	@Autowired
 	private RoleService rs;
 
-	/**
-	 * 分返回角色信息
-	 * 
-	 * @param request
-	 * @return
-	 */
+	
+	/**  
+	 * @Title: getRoles
+	 * @Description: 获取权限
+	 * @param pageNum
+	 * @param pageSize
+	 * @param roleName
+	 * @param description
+	 * @return  
+	 */  
 	@RequestMapping(value = "roles", method = RequestMethod.GET)
 	@ApiOperation(value= "获取角色列表")
 	@ApiImplicitParams({
@@ -69,14 +78,20 @@ public class RoleController {
 		return resultMap;
 	}
 
-	/**
-	 * 添加权限
-	 * 
+	
+	/**  
+	 * @Title: postRoles
+	 * @Description: 添加角色 
 	 * @param role
-	 * @return
-	 */
+	 * @return  
+	 */  
 	@RequestMapping(value = "roles", method = RequestMethod.POST)
+	@Transactional(rollbackFor = Exception.class)
 	@ResponseBody
+	@ApiOperation(value= "添加角色")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "role",required = true,value = "角色信息",dataType = "SysRole")
+	})
 	public String postRoles(@RequestBody SysRole role) {
 		role.setCreationUserId(1L);
 		role.setLastUpdateUserId(1L);
@@ -84,28 +99,40 @@ public class RoleController {
 		return count + "  success!!";
 	}
 
-	/**
-	 * 更新角色信息
-	 * 
+	
+	/**  
+	 * @Title: putRole
+	 * @Description: 更新角色
 	 * @param role
-	 * @return
-	 */
+	 * @return  
+	 */  
 	@RequestMapping(value = "roles", method = RequestMethod.PUT)
+	@Transactional(rollbackFor = Exception.class)
 	@ResponseBody
+	@ApiOperation(value= "更新角色信息")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "role",required = true,value = "角色信息",dataType = "SysRole")
+	})
 	public String putRole(@RequestBody SysRole role) {
 		role.setLastUpdateUserId(2L);
 		int count = rs.updateRole(role);
 		return count + "  success!!";
 	}
 
-	/**
-	 * 批量删除角色信息
-	 * 
+	
+	/**  
+	 * @Title: deleteRoles
+	 * @Description: 批量删除角色
 	 * @param role
-	 * @return
-	 */
+	 * @return  
+	 */  
 	@RequestMapping(value = "roles", method = RequestMethod.DELETE)
+	@Transactional(rollbackFor = Exception.class)
 	@ResponseBody
+	@ApiOperation(value= "删除角色")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "role",required = true,value = "角色信息列表")
+	})
 	public String deleteRoles(@RequestBody List<SysRole> role) {
 		int count = rs.deleteRole(role);
 		return count + "  success!!";

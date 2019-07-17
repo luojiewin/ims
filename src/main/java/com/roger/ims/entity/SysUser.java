@@ -2,6 +2,12 @@ package com.roger.ims.entity;
 
 import java.util.Date;
 
+/**  
+* @Title: SysUser  
+* @Description: 用户表sys_user
+* @author roger  
+* @date 2019年7月17日  
+*/  
 public class SysUser {
     /**
      *

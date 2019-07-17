@@ -20,9 +20,13 @@ public interface SysUserMapper {
 	 */
 	List<SysUser> selectAll();
 
-	/**
-	 * 根据登录账户查询
-	 */
+
+	/**  
+	 * @Title: getUserInfoByUser
+	 * @Description: 根据登录账户查询
+	 * @param user
+	 * @return  SysUser
+	 */  
 	SysUser getUserInfoByUser(SysUser user);
 
 
