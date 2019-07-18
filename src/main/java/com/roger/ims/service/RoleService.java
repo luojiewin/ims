@@ -2,8 +2,8 @@ package com.roger.ims.service;
 
 import java.util.List;
 
-import com.roger.ims.dto.Role;
 import com.roger.ims.entity.SysRole;
+import com.roger.ims.vo.RoleVo;
 
 /**  
 * @Title: RoleService  
@@ -19,7 +19,7 @@ public interface RoleService {
 	 * @param role
 	 * @return  
 	 */  
-	List<Role> selectRole(Role role);
+	List<RoleVo> selectRole(RoleVo role);
 	
 	/**  
 	 * @Title: insertRole

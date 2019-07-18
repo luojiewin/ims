@@ -1,10 +1,10 @@
-package com.roger.ims.dto;
+package com.roger.ims.vo;
 
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class Role {
+public class RoleVo {
 	/*
 	 * 角色ID
 	 */

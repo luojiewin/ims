@@ -1,6 +1,9 @@
 package com.roger.ims.mapper;
 
+import com.roger.ims.entity.SysRole;
 import com.roger.ims.entity.SysUser;
+import com.roger.ims.vo.UserVo;
+
 import java.util.List;
 
 public interface SysUserMapper {
@@ -28,6 +31,14 @@ public interface SysUserMapper {
 	 * @return  SysUser
 	 */  
 	SysUser selectUserInfoByUser(SysUser user);
-
+    
+	
+	List<SysUser> selectUser(UserVo user);
+	
+	int updateRole(SysRole role);
+	
+	int deleteRole(List<SysRole> role);
+	
+	List<SysRole> selectRolesByUser(SysUser user);
 
 }

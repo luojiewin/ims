@@ -1,8 +1,8 @@
 package com.roger.ims.mapper;
 
-import com.roger.ims.dto.Role;
 import com.roger.ims.entity.SysRole;
 import com.roger.ims.entity.SysUser;
+import com.roger.ims.vo.RoleVo;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public interface SysRoleMapper {
 	 * @param role
 	 * @return  List<Role>
 	 */  
-	List<Role> selectRole(Role role);
+	List<RoleVo> selectRole(RoleVo role);
 
 
 	/**  

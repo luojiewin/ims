@@ -6,10 +6,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.roger.ims.dto.Role;
+
 import com.roger.ims.entity.SysRole;
 import com.roger.ims.mapper.SysRoleMapper;
 import com.roger.ims.service.RoleService;
+import com.roger.ims.vo.RoleVo;
+
 import ch.qos.logback.classic.Logger;
 
 /**  
@@ -31,10 +33,10 @@ public class RoleServiceImpl implements RoleService{
 	 * @Description: 查询角色
 	 * @param role
 	 * @return  
-	 * @see com.roger.ims.service.RoleService#selectRole(com.roger.ims.dto.Role)  
+	 * @see com.roger.ims.service.RoleService#selectRole(com.roger.ims.vo.RoleVo)  
 	 */
 	@Override
-	public List<Role> selectRole(Role role) {
+	public List<RoleVo> selectRole(RoleVo role) {
 		return srm.selectRole(role);
 	}
 

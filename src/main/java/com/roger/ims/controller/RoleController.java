@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.roger.ims.dto.Role;
 import com.roger.ims.entity.SysRole;
 import com.roger.ims.service.RoleService;
+import com.roger.ims.vo.RoleVo;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -60,13 +60,13 @@ public class RoleController {
 			String description) {
 		// 创建分页
 		PageHelper.startPage(Integer.parseInt(pageNum), Integer.parseInt(pageSize));
-		Role role = new Role();
+		RoleVo role = new RoleVo();
 		role.setRoleName(roleName);
 		role.setDescription(description);
 		// 查询数据
-		List<Role> roleList = rs.selectRole(role);
+		List<RoleVo> roleList = rs.selectRole(role);
 		// 创建分页对象
-		PageInfo<Role> pageInfo = new PageInfo<Role>(roleList);
+		PageInfo<RoleVo> pageInfo = new PageInfo<RoleVo>(roleList);
 		// 查询分页数
 		Long total = pageInfo.getTotal();
 
