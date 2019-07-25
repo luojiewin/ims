@@ -1,4 +1,4 @@
-package com.roger.ims.entity;
+package com.roger.ims.dto;
 
 import java.util.Date;
 
@@ -9,19 +9,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**  
-* @Title: SysRole  
-* @Description: 角色表 sys_role
-* @author roger  
-* @date 2019年7月17日  
-*/
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SysRole {
-  
-    /** 角色ID*/  
+public class RoleVo {	
+	/** 角色ID*/  
     private Long roleId;
 
     /** 角色名称*/  
@@ -42,5 +35,4 @@ public class SysRole {
 
     /** lastUpdateUserId*/  
     private Long lastUpdateUserId;
-
 }

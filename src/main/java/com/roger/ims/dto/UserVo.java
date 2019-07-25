@@ -5,9 +5,11 @@
 * @date 2019年7月17日  
 * @version 1.0  
 */
-package com.roger.ims.vo;
+package com.roger.ims.dto;
 
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  * @Title: UserSelection
@@ -29,6 +31,7 @@ public class UserVo {
 	/** 电子邮箱*/  
 	private String email;
 	/** 创建时间*/  
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date creationTime;
 	
 	public long getUserId() {

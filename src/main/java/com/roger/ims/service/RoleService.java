@@ -2,8 +2,7 @@ package com.roger.ims.service;
 
 import java.util.List;
 
-import com.roger.ims.entity.SysRole;
-import com.roger.ims.vo.RoleVo;
+import com.roger.ims.dto.RoleVo;
 
 /**  
 * @Title: RoleService  
@@ -27,7 +26,7 @@ public interface RoleService {
 	 * @param role
 	 * @return  
 	 */  
-	int insertRole(SysRole role);
+	int insertRole(RoleVo role);
 	
 	/**  
 	 * @Title: updateRole
@@ -35,7 +34,7 @@ public interface RoleService {
 	 * @param role
 	 * @return  
 	 */  
-	int updateRole(SysRole role);
+	int updateRole(RoleVo role);
 	
 	/**  
 	 * @Title: deleteRole
@@ -43,5 +42,5 @@ public interface RoleService {
 	 * @param role
 	 * @return  
 	 */  
-	int deleteRole(List<SysRole> role);
+	int deleteRole(List<RoleVo> role);
 }

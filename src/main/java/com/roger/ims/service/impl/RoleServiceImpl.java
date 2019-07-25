@@ -1,17 +1,16 @@
 package com.roger.ims.service.impl;
 
 import java.util.List;
-
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.roger.ims.dao.SysRoleMapper;
+import com.roger.ims.dto.RoleVo;
 import com.roger.ims.entity.SysRole;
-import com.roger.ims.mapper.SysRoleMapper;
 import com.roger.ims.service.RoleService;
-import com.roger.ims.vo.RoleVo;
-
+import com.roger.ims.utils.MapperUtil;
 import ch.qos.logback.classic.Logger;
 
 /**  
@@ -28,16 +27,20 @@ public class RoleServiceImpl implements RoleService{
 	@Autowired
 	private SysRoleMapper srm;
 	
+	MapperUtil mapperUtil = new MapperUtil();
+	
 	/**  
 	 * @Title: selectRole 
 	 * @Description: 查询角色
 	 * @param role
 	 * @return  
-	 * @see com.roger.ims.service.RoleService#selectRole(com.roger.ims.vo.RoleVo)  
+	 * @see com.roger.ims.service.RoleService#selectRole(com.roger.ims.dto.RoleVo)  
 	 */
 	@Override
 	public List<RoleVo> selectRole(RoleVo role) {
-		return srm.selectRole(role);
+		SysRole  sysRole = new SysRole();
+		mapperUtil.map(role, SysRole.class);
+		return mapperUtil.map(srm.findAll(sysRole), RoleVo.class);
 	}
 
 	/** 
@@ -49,10 +52,11 @@ public class RoleServiceImpl implements RoleService{
 	 */
 	@Override
 	@Transactional
-	public int insertRole(SysRole role) {
+	public int insertRole(RoleVo role) {
+		SysRole sysRole = mapperUtil.map(role, SysRole.class);
 		int result = -1;
 		try {
-			 result =  srm.insert(role);
+			 result =  srm.add(sysRole);
 		}catch (Exception e) {
 			e.printStackTrace();
 			LOGGER.error(e.getMessage());
@@ -69,10 +73,11 @@ public class RoleServiceImpl implements RoleService{
 	 */
 	@Override
 	@Transactional
-	public int updateRole(SysRole role) {	
+	public int updateRole(RoleVo role) {	
+		SysRole sysRole = mapperUtil.map(role, SysRole.class);
 		int result = 0;
 		try {
-			result = srm.updateRole(role);
+			result = srm.updateRole(sysRole);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -89,10 +94,11 @@ public class RoleServiceImpl implements RoleService{
 	 */
 	@Override
 	@Transactional
-	public int deleteRole(List<SysRole> role) {	
+	public int deleteRole(List<RoleVo> role) {	
+		List<SysRole> roleVoList = mapperUtil.map(role, SysRole.class);
 		int result = 0;
 		try {
-			result = srm.deleteRole(role);
+			result = srm.deleteRole(roleVoList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.roger.ims.dao.SysRightMapper;
+import com.roger.ims.dao.SysRoleMapper;
+import com.roger.ims.dao.SysUserMapper;
 import com.roger.ims.dto.Menu;
 import com.roger.ims.entity.SysRight;
 import com.roger.ims.entity.SysRole;
 import com.roger.ims.entity.SysUser;
-import com.roger.ims.mapper.SysRightMapper;
-import com.roger.ims.mapper.SysRoleMapper;
-import com.roger.ims.mapper.SysUserMapper;
 import com.roger.ims.service.LoginService;
 import com.roger.ims.utils.GetMenuTree;
 
@@ -24,7 +24,7 @@ import com.roger.ims.utils.GetMenuTree;
 @Service
 public class LoginServiceImpl implements LoginService{
 	@Autowired
-	private SysRightMapper srm;
+	private SysRightMapper sysRightMapper;
 	@Autowired 
 	private SysRoleMapper sysRoleMapper;	
 	@Autowired
@@ -40,9 +40,9 @@ public class LoginServiceImpl implements LoginService{
 	 */
 	@Override
 	public List<Menu> getMenuTree(SysUser user) {
-		List<Menu> menuList = srm.selectRightByUserId(user.getLoginName());
+		List<Menu> menuList = sysRightMapper.selectRightByUserId(user.getLoginName());
 		GetMenuTree menuTree = new GetMenuTree();
-		return menuTree.getMenuTree(menuList);			
+		return menuTree.getMenuTree(menuList);		
 	}
 	
 	
@@ -80,7 +80,7 @@ public class LoginServiceImpl implements LoginService{
 	 */
 	@Override
 	public List<SysRight> selectRightInfoByRole(List<SysRole> roleList) {
-		return srm.selectRightsByRoles(roleList);
+		return sysRightMapper.selectRightsByRoles(roleList);
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.roger.ims.mapper;
+package com.roger.ims.dao;
 
 import com.roger.ims.dto.Menu;
 import com.roger.ims.entity.SysRight;

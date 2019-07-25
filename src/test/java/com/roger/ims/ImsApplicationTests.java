@@ -11,12 +11,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.roger.ims.dao.SysRightMapper;
+import com.roger.ims.dao.SysRoleMapper;
+import com.roger.ims.dao.SysUserMapper;
 import com.roger.ims.dto.Menu;
 import com.roger.ims.entity.SysRole;
 import com.roger.ims.entity.SysUser;
-import com.roger.ims.mapper.SysRightMapper;
-import com.roger.ims.mapper.SysRoleMapper;
-import com.roger.ims.mapper.SysUserMapper;
 import com.roger.ims.utils.GetMenuTree;
 
 @RunWith(SpringRunner.class)
@@ -48,7 +48,7 @@ public class ImsApplicationTests {
 		System.out.println(retUser.getUsername());
 	}
 	
-	@Test
+	@Ignore
 	@Transactional
 	public void tranTest() throws Exception{
 		SysRole role = new SysRole();
@@ -59,6 +59,13 @@ public class ImsApplicationTests {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	
+	@Test
+	public void addUser() {
+		SysUser sysUser = new SysUser();
+		sum.update(sysUser);
 	}
 
 }
