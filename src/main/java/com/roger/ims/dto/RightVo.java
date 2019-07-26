@@ -1,20 +1,30 @@
-package com.roger.ims.entity;
+/**  
+* @Title: RightVo.java
+* @Description:  
+* @author roger  
+* @date 2019年7月25日  
+* @version 1.0  
+*/
+package com.roger.ims.dto;
 
 import java.util.Date;
+
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
- * @Title: SysRight
- * @Description: 权限表 sys_right
+ * @Title: RightVo
+ * @Description:
  * @author roger
- * @date 2019年7月17日
+ * @date 2019年7月25日
  */
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SysRight {
+public class RightVo {
 
 	/** 权限ID */
 	private Long rightId;
@@ -22,31 +32,30 @@ public class SysRight {
 	/** 权限名称 */
 	private String rightName;
 
-	/** 权限父节点 */
+	/** 权限父节点*/  
 	private Long parentRight;
 
-	/** 权限登记 */
+	/** 权限登记*/  
 	private Integer rightLevel;
 
-	/** 菜单索引 */
+	/** 菜单索引*/  
 	private String menuIndex;
 
-	/** 按钮 */
+	/** 按钮*/  
 	private String icon;
 
-	/** 权限描述 */
+	/** 权限描述*/  
 	private String description;
 
-	/** creationTime */
+	/** creationTime*/  
 	private Date creationTime;
 
-	/** creationUserId */
+	/** creationUserId*/  
 	private Long creationUserId;
 
-	/** lastUpdateTime */
+	/** lastUpdateTime*/  
 	private Date lastUpdateTime;
 
-	/** lastUpdateUserId */
+	/** lastUpdateUserId*/  
 	private Long lastUpdateUserId;
-	
 }

@@ -5,16 +5,7 @@ import com.roger.ims.entity.SysUser;
 
 import java.util.List;
 
-public interface SysRoleMapper extends BaseMapper<SysRole>{
-
-	/**  
-	 * @Title: updateRole
-	 * @Description: 更新角色信息
-	 * @param role
-	 * @return  
-	 */  
-	int updateRole(SysRole role);
-
+public interface SysRoleDao extends BaseDao<SysRole>{
 
 	/**  
 	 * @Title: deleteRole
@@ -30,5 +21,5 @@ public interface SysRoleMapper extends BaseMapper<SysRole>{
 	 * @param user
 	 * @return  
 	 */  
-	List<SysRole> selectRolesByUser(SysUser user);
+	List<SysRole> findRolesByUser(SysUser user);
 }

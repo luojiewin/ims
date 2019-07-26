@@ -15,7 +15,7 @@ import java.util.List;
 * @author roger  
 * @date 2019年7月23日  
 */
-public interface BaseMapper<T> {
+public interface BaseDao<T> {
 	
 	/**  
 	 * @Title: add

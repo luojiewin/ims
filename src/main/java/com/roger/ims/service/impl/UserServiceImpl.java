@@ -12,7 +12,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.roger.ims.dao.SysUserMapper;
+import com.roger.ims.dao.SysUserDao;
 import com.roger.ims.dto.UserVo;
 import com.roger.ims.entity.SysUser;
 import com.roger.ims.service.UserService;
@@ -27,7 +27,7 @@ import com.roger.ims.service.UserService;
 public class UserServiceImpl implements UserService{
 	
 	@Autowired
-	private SysUserMapper sysUserMapper;
+	private SysUserDao sysUserMapper;
 
 	/**  
 	 * @Title: selectUser 

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.roger.ims.dao.SysRoleMapper;
+import com.roger.ims.dao.SysRoleDao;
 import com.roger.ims.dto.RoleVo;
 import com.roger.ims.entity.SysRole;
 import com.roger.ims.service.RoleService;
@@ -25,7 +25,7 @@ public class RoleServiceImpl implements RoleService{
 	private static Logger LOGGER = (Logger) LoggerFactory.getLogger(RoleServiceImpl.class);
 	
 	@Autowired
-	private SysRoleMapper srm;
+	private SysRoleDao sysRoleDao;
 	
 	MapperUtil mapperUtil = new MapperUtil();
 	
@@ -34,13 +34,13 @@ public class RoleServiceImpl implements RoleService{
 	 * @Description: 查询角色
 	 * @param role
 	 * @return  
-	 * @see com.roger.ims.service.RoleService#selectRole(com.roger.ims.dto.RoleVo)  
+	 * @see com.roger.ims.service.RoleService#findAllRole(com.roger.ims.dto.RoleVo)  
 	 */
 	@Override
-	public List<RoleVo> selectRole(RoleVo role) {
+	public List<RoleVo> findAllRole(RoleVo role) {
 		SysRole  sysRole = new SysRole();
 		mapperUtil.map(role, SysRole.class);
-		return mapperUtil.map(srm.findAll(sysRole), RoleVo.class);
+		return mapperUtil.map(sysRoleDao.findAll(sysRole), RoleVo.class);
 	}
 
 	/** 
@@ -48,15 +48,15 @@ public class RoleServiceImpl implements RoleService{
 	 * @Description: 添加角色
 	 * @param role
 	 * @return  
-	 * @see com.roger.ims.service.RoleService#insertRole(com.roger.ims.entity.SysRole)  
+	 * @see com.roger.ims.service.RoleService#addRole(com.roger.ims.entity.SysRole)  
 	 */
 	@Override
 	@Transactional
-	public int insertRole(RoleVo role) {
+	public int addRole(RoleVo role) {
 		SysRole sysRole = mapperUtil.map(role, SysRole.class);
 		int result = -1;
 		try {
-			 result =  srm.add(sysRole);
+			 result =  sysRoleDao.add(sysRole);
 		}catch (Exception e) {
 			e.printStackTrace();
 			LOGGER.error(e.getMessage());
@@ -77,7 +77,7 @@ public class RoleServiceImpl implements RoleService{
 		SysRole sysRole = mapperUtil.map(role, SysRole.class);
 		int result = 0;
 		try {
-			result = srm.updateRole(sysRole);
+			result = sysRoleDao.update(sysRole);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -98,7 +98,7 @@ public class RoleServiceImpl implements RoleService{
 		List<SysRole> roleVoList = mapperUtil.map(role, SysRole.class);
 		int result = 0;
 		try {
-			result = srm.deleteRole(roleVoList);
+			result = sysRoleDao.deleteRole(roleVoList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

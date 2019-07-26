@@ -2,10 +2,10 @@ package com.roger.ims.service;
 
 import java.util.List;
 
-import com.roger.ims.dto.Menu;
-import com.roger.ims.entity.SysRight;
-import com.roger.ims.entity.SysRole;
-import com.roger.ims.entity.SysUser;
+import com.roger.ims.dto.MenuVo;
+import com.roger.ims.dto.RightVo;
+import com.roger.ims.dto.RoleVo;
+import com.roger.ims.dto.UserVo;
 
 
 /**  
@@ -17,35 +17,35 @@ import com.roger.ims.entity.SysUser;
 public interface LoginService {
 	
 	/**  
-	 * @Title: getMenuTree
+	 * @Title: findMenuTree
 	 * @Description: 获取导航菜单树
 	 * @param user
 	 * @return  
 	 */  
-	public List<Menu> getMenuTree(SysUser user);
+	public List<MenuVo> findMenuTree(UserVo user);
 	
 	/**  
-	 * @Title: selectUserInfoByUser
+	 * @Title: findUserInfoByUser
 	 * @Description: 获取用户信息
 	 * @param user
 	 * @return  
 	 */  
-	public SysUser selectUserInfoByUser(SysUser user);
+	public UserVo findUserInfoByUser(UserVo user);
 	
 
 	/**  
-	 * @Title: selectRoleInfoByUser
+	 * @Title: findRoleInfoByUser
 	 * @Description: 获取角色信息
 	 * @param user
 	 * @return  
 	 */  
-	public List<SysRole> selectRoleInfoByUser(SysUser user);
+	public List<RoleVo> findRoleInfoByUser(UserVo user);
 
 	/**  
-	 * @Title: selectRightInfoByRole
+	 * @Title: findRightInfoByRole
 	 * @Description: 根据角色获取权限信息
 	 * @param roleList
 	 * @return  
 	 */  
-	public List<SysRight> selectRightInfoByRole(List<SysRole> roleList);
+	public List<RightVo> findRightInfoByRole(List<RoleVo> roleList);
 }

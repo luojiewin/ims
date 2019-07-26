@@ -11,31 +11,34 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.roger.ims.dao.SysRightMapper;
-import com.roger.ims.dao.SysRoleMapper;
-import com.roger.ims.dao.SysUserMapper;
-import com.roger.ims.dto.Menu;
+import com.roger.ims.dao.SysRightDao;
+import com.roger.ims.dao.SysRoleDao;
+import com.roger.ims.dao.SysUserDao;
+import com.roger.ims.dto.MenuVo;
 import com.roger.ims.entity.SysRole;
 import com.roger.ims.entity.SysUser;
 import com.roger.ims.utils.GetMenuTree;
+import com.roger.ims.utils.MapperUtil;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ImsApplicationTests {
 	@Autowired
-	private SysRightMapper srm;
+	private SysRightDao sysRightDao;
 	
 	@Autowired
-	private SysRoleMapper srm1;
+	private SysRoleDao sysRoleDao;
 	
 	@Autowired
-	private SysUserMapper sum;
+	private SysUserDao sysUserDao;
+	
+	MapperUtil mapperUtil = new MapperUtil();
 
-	@Ignore
+	@Test
 	public void contextLoads() {
-		List<Menu> menuList = srm.selectRightByUserId("131212");
+		List<MenuVo> menuList = mapperUtil.map(sysRightDao.findRightByUserId("131212"), MenuVo.class);
 		GetMenuTree menuTree = new GetMenuTree();
-		List<Menu> ret = menuTree.getMenuTree(menuList);
+		List<MenuVo> ret = menuTree.getMenuTree(menuList);
 		System.out.println(ret);
 
 	}
@@ -44,7 +47,7 @@ public class ImsApplicationTests {
 		SysUser user = new SysUser();
 		user.setLoginName("131212");
 		user.setPassword("1");
-		SysUser retUser = sum.selectUserInfoByUser(user);
+		SysUser retUser = sysUserDao.selectUserInfoByUser(user);
 		System.out.println(retUser.getUsername());
 	}
 	
@@ -55,17 +58,17 @@ public class ImsApplicationTests {
 		role.setRoleId(47L);
 		role.setRoleName("first111");
 		try {
-			srm1.updateRole(role);
+			sysRoleDao.update(role);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	
-	@Test
+	@Ignore
 	public void addUser() {
 		SysUser sysUser = new SysUser();
-		sum.update(sysUser);
+		sysUserDao.update(sysUser);
 	}
 
 }

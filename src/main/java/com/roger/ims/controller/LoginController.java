@@ -9,15 +9,16 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.roger.ims.dto.Menu;
-import com.roger.ims.entity.SysRight;
-import com.roger.ims.entity.SysRole;
-import com.roger.ims.entity.SysUser;
+import com.roger.ims.dto.MenuVo;
+import com.roger.ims.dto.RightVo;
+import com.roger.ims.dto.RoleVo;
+import com.roger.ims.dto.UserVo;
 import com.roger.ims.service.LoginService;
 
 import io.swagger.annotations.Api;
@@ -36,7 +37,7 @@ import io.swagger.annotations.ApiOperation;
 public class LoginController {
 
 	@Autowired
-	private LoginService ls;
+	private LoginService loginService;
 
 	/**
 	 * @Title: getMenu
@@ -44,14 +45,13 @@ public class LoginController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "menus", method = RequestMethod.GET)
+	@GetMapping(value = "menus")
 	@ResponseBody
 	@ApiOperation(value = "获取用户菜单信息")
-	public List<Menu> getMenu(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		SysUser user = new SysUser();
-		user = (SysUser) session.getAttribute("user");
-		return ls.getMenuTree(user);
+	public List<MenuVo> getMenu(HttpServletRequest request) {
+		HttpSession session = request.getSession();		
+		UserVo user = (UserVo) session.getAttribute("user");
+		return loginService.findMenuTree(user);
 
 	}
 
@@ -62,14 +62,14 @@ public class LoginController {
 	 * @param request
 	 * @return map
 	 */
-	@RequestMapping(value = "login", method = RequestMethod.POST)
+	@PostMapping(value = "login")
 	@ApiOperation(value = "用户登录信息验证")
 	@ResponseBody
-	public Map<Object, Object> userLogin(@RequestBody SysUser user, HttpServletRequest request) {
+	public Map<Object, Object> userLogin(@RequestBody UserVo user, HttpServletRequest request) {
 		Map<Object, Object> map = new HashMap<Object, Object>();
-		SysUser retUser = ls.selectUserInfoByUser(user);
-		List<SysRole> retRole = ls.selectRoleInfoByUser(retUser);
-		List<SysRight> retRight = ls.selectRightInfoByRole(retRole);
+		UserVo retUser = loginService.findUserInfoByUser(user);
+		List<RoleVo> retRole = loginService.findRoleInfoByUser(retUser);
+		List<RightVo> retRight = loginService.findRightInfoByRole(retRole);
 		if (retUser == null || "".equals(retUser)) {
 			map.put("status", 201);
 			return map;
@@ -89,7 +89,7 @@ public class LoginController {
 	 * @param right
 	 * @param request
 	 */
-	public void createSession(SysUser user, List<SysRole> role, List<SysRight> right, HttpServletRequest request) {
+	public void createSession(UserVo user, List<RoleVo> role, List<RightVo> right, HttpServletRequest request) {
 		// 使用request对象的getSession()获取session，如果session不存在则创建一个
 		HttpSession session = request.getSession();
 		session.setAttribute("user", user);

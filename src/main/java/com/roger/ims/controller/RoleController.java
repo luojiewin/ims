@@ -37,7 +37,7 @@ import io.swagger.annotations.ApiOperation;
 public class RoleController {
 	
 	@Autowired
-	private RoleService rs;
+	private RoleService roleService;
 
 	
 	/**  
@@ -66,7 +66,7 @@ public class RoleController {
 		role.setRoleName(roleName);
 		role.setDescription(description);
 		// 查询数据
-		List<RoleVo> roleList = rs.selectRole(role);
+		List<RoleVo> roleList = roleService.findAllRole(role);
 		// 创建分页对象
 		PageInfo<RoleVo> pageInfo = new PageInfo<RoleVo>(roleList);
 		// 查询分页数
@@ -96,7 +96,7 @@ public class RoleController {
 	public String postRoles(@RequestBody RoleVo role) {
 		role.setCreationUserId(1L);
 		role.setLastUpdateUserId(1L);
-		int count = rs.insertRole(role);
+		int count = roleService.addRole(role);
 		return count + "  success!!";
 	}
 
@@ -116,7 +116,7 @@ public class RoleController {
 	})
 	public String putRole(@RequestBody RoleVo role) {
 		role.setLastUpdateUserId(2L);
-		int count = rs.updateRole(role);
+		int count = roleService.updateRole(role);
 		return count + "  success!!";
 	}
 
@@ -135,7 +135,7 @@ public class RoleController {
 		@ApiImplicitParam(name = "role",required = true,value = "角色信息列表")
 	})
 	public String deleteRoles(@RequestBody List<RoleVo> role) {
-		int count = rs.deleteRole(role);
+		int count = roleService.deleteRole(role);
 		return count + "  success!!";
 	}
 

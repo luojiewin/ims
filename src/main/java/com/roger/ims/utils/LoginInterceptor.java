@@ -15,7 +15,7 @@ import ch.qos.logback.classic.Logger;
 * @Description: 用户登录拦截
 * @author roger  
 * @date 2019年7月17日  
-*/  
+*/ 
 public class LoginInterceptor implements HandlerInterceptor {
 	
 	private static Logger LOGGER = (Logger) LoggerFactory.getLogger(LoginInterceptor.class);

@@ -3,7 +3,7 @@ package com.roger.ims.utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.roger.ims.dto.Menu;
+import com.roger.ims.dto.MenuVo;
 
 /**  
 * @Title: GetMenuTree  
@@ -13,10 +13,10 @@ import com.roger.ims.dto.Menu;
 */  
 public class GetMenuTree {
 	
-	public List<Menu> getMenuTree(List<Menu> menuList) {
-		List<Menu> menuTree = new ArrayList<Menu>();
+	public List<MenuVo> getMenuTree(List<MenuVo> menuList) {
+		List<MenuVo> menuTree = new ArrayList<MenuVo>();
 		//判断是否为最外层节点，如果是，递归获取子节点
-		for(Menu menu : menuList) {
+		for(MenuVo menu : menuList) {
 			if(menu.getParentRight()==0) {
 				getChildrenMenu(menuList,menu);
 				menuTree.add(menu);
@@ -31,8 +31,8 @@ public class GetMenuTree {
 	 * @param menuList
 	 * @param parentMenu  
 	 */  
-	public void getChildrenMenu(List<Menu> menuList,Menu parentMenu) {
-		for(Menu menu : menuList) {
+	public void getChildrenMenu(List<MenuVo> menuList,MenuVo parentMenu) {
+		for(MenuVo menu : menuList) {
 			if(parentMenu.getRightId().equals(menu.getParentRight())) {
 				parentMenu.getSubs().add(menu);
 				getChildrenMenu(menuList,menu);

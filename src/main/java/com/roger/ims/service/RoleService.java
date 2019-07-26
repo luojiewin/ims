@@ -18,7 +18,7 @@ public interface RoleService {
 	 * @param role
 	 * @return  
 	 */  
-	List<RoleVo> selectRole(RoleVo role);
+	List<RoleVo> findAllRole(RoleVo role);
 	
 	/**  
 	 * @Title: insertRole
@@ -26,7 +26,7 @@ public interface RoleService {
 	 * @param role
 	 * @return  
 	 */  
-	int insertRole(RoleVo role);
+	int addRole(RoleVo role);
 	
 	/**  
 	 * @Title: updateRole
