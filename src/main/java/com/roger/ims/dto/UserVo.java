@@ -11,12 +11,19 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * @Title: UserSelection
  * @Description: 用户查询面板
  * @author roger
  * @date 2019年7月17日
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserVo {
 	/** 用户ID */
 	private long userId;
@@ -33,48 +40,4 @@ public class UserVo {
 	/** 创建时间*/  
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date creationTime;
-	
-	public long getUserId() {
-		return userId;
-	}
-	public void setUserId(long userId) {
-		this.userId = userId;
-	}
-	public String getLoginName() {
-		return loginName;
-	}
-	public void setLoginName(String loginName) {
-		this.loginName = loginName;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getTelphone() {
-		return telphone;
-	}
-	public void setTelphone(String telphone) {
-		this.telphone = telphone;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public Date getCreationTime() {
-		return creationTime;
-	}
-	public void setCreationTime(Date creationTime) {
-		this.creationTime = creationTime;
-	}
-	
 }

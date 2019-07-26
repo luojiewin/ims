@@ -2,9 +2,8 @@ package com.roger.ims.entity;
 
 import java.util.Date;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**  
 * @Title: SysUser  
@@ -12,8 +11,7 @@ import lombok.Setter;
 * @author roger  
 * @date 2019年7月17日  
 */
-@Setter
-@Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class SysUser {

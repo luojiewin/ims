@@ -5,9 +5,8 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**  
 * @Title: SysRole  
@@ -15,8 +14,7 @@ import lombok.Setter;
 * @author roger  
 * @date 2019年7月17日  
 */
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class SysRole {

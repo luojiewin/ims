@@ -10,9 +10,8 @@ package com.roger.ims.dto;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
  * @Title: RightVo
@@ -20,10 +19,9 @@ import lombok.Setter;
  * @author roger
  * @date 2019年7月25日
  */
-@Setter
-@Getter
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class RightVo {
 
 	/** 权限ID */
